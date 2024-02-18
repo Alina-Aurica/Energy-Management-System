@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container px-5">
+    <a class="navbar-brand" href="firstPage">EMSystem</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" (click)="logOut()">Log Out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 10%; color: darkblue; background-color: lightcyan;" class="container">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userList">
+      <td><span>{{user.id}}</span></td>
+      <td><span>{{user.firstName}}</span></td>
+      <td><span>{{user.lastName}}</span></td>
+      <td><span>{{user.email}}</span></td>
+      <td><span>{{user.role}}</span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="parent">
+  <div style="margin-left: 10px; margin-right: 10px" class="card-header">
+    <form (ngSubmit)="search()">
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="keyword" class="form-label">Search keyword</label>
+        <input type="keyword" [(ngModel)]="keyword" class="form-control" id="keyword" name="keyword">
+      </div>
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="optionSearch">Search options</label>
+        <select class="form-control"  id="optionSearch"
+                required
+                [(ngModel)]="typeOfSearch" name="optionSearch">
+          <option *ngFor="let typeS of typeOfSearchList" [value]="typeS">{{typeS}}</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+    </form>
+  </div>
+  <div style="margin-left: 10px; margin-right: 10px" class="card-header">
+    <form (ngSubmit)="updateEmail(); insert(); deleteByEmail()">
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="name" class="form-label">First Name</label>
+        <input type="name" [(ngModel)]="user.firstName" class="form-control" id="name" name="name">
+      </div>
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="lname" class="form-label">Last Name</label>
+        <input type="lname" [(ngModel)]="user.lastName" class="form-control" id="lname" name="lname">
+      </div>
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" [(ngModel)]="user.email" class="form-control" id="email" name="email">
+      </div>
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" [(ngModel)]="user.password" class="form-control" id="password" name="password">
+      </div>
+      <div style="color: darkblue" class="mb-sm-3">
+        <label for="role" class="form-label">Role</label>
+        <input type="role" [(ngModel)]="user.role" class="form-control" id="role" name="role">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="updateEmail()">Update Email</button>
+      <button type="button" class="btn btn-primary" (click)="insert()">Insert User</button>
+      <button type="button" class="btn btn-primary" (click)="deleteByEmail()">Delete By Email</button>
+    </form>
+  </div>
+</div>
+
+
+
+

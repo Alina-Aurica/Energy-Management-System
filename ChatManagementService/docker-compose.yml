@@ -1,0 +1,28 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres-chat
+    image: postgres:16-alpine3.18
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_DB=chat
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456789
+    volumes:
+      - chat:/var/lib/postgresql/data
+  app:
+    container_name: chat-management-system
+    image: chat-image-ass3-v2
+    build: .
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/chat
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123456789
+    links:
+      - postgres
+
+volumes:
+  chat:
